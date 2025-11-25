@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - DinoEvolution</title>
+  <style>
+    /* ====== RESET ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #0a0a0a;
+      color: #f5f5f5;
+      overflow-x: hidden;
+    }
+
+    /* ====== NAVBAR ====== */
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 3rem;
+      background: rgba(0, 0, 0, 0.6);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    nav h1 {
+      font-size: 1.5rem;
+      letter-spacing: 1px;
+      color: #6ddf5d;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #6ddf5d;
+    }
+
+    /* ====== HEADER SECTION ====== */
+    header {
+      padding-top: 8rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    header h2 {
+      color: #6ddf5d;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      color: #dcdcdc;
+      font-size: 1.1rem;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.7;
+    }
+
+    /* ====== MAIN CONTENT ====== */
+    .about-container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 4rem;
+      background: rgba(255,255,255,0.05);
+      padding: 2rem;
+      border-radius: 12px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .section:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 20px rgba(109, 223, 93, 0.2);
+    }
+
+    .section h3 {
+      color: #6ddf5d;
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+    }
+
+    .section p {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: #eaeaea;
+    }
+
+    /* ====== TEAM SECTION ====== */
+    .team {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .member {
+      background: rgba(255,255,255,0.05);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: center;
+      width: 260px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .member:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 15px rgba(109, 223, 93, 0.2);
+    }
+
+    .member img {
+      width: 100%;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 1rem;
+      background: #222;
+    }
+
+    .member h4 {
+      color: #6ddf5d;
+      margin-bottom: 0.3rem;
+      font-size: 1.2rem;
+    }
+
+    .member p {
+      color: #ccc;
+      font-size: 0.95rem;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      text-align: center;
+      padding: 2rem;
+      color: #aaa;
+      border-top: 1px solid #333;
+      margin-top: 4rem;
+    }
+
+    /* ====== RESPONSIVE ====== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      header h2 {
+        font-size: 2rem;
+      }
+
+      .section h3 {
+        font-size: 1.5rem;
+      }
+
+      .member {
+        width: 90%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      header {
+        padding-top: 7rem;
+      }
+
+      header h2 {
+        font-size: 1.8rem;
+      }
+
+      header p {
+        font-size: 1rem;
+      }
+
+      .section {
+        padding: 1.5rem;
+      }
+
+      .member img {
+        height: 200px;
+      }
+
+      .member h4 {
+        font-size: 1.1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- ====== NAVBAR ====== -->
+  <nav>
+    <h1>DinoX</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="dinosaurs.html">Dinosaurs</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- ====== HEADER ====== -->
+  <header>
+    <h2>About DinoEvolution</h2>
+    <p>DinoEvolution is a creative educational project designed to take visitors on a visual and informational journey through the history of dinosaurs. This page explains our purpose, inspiration, and the team behind the creation.</p>
+  </header>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <div class="about-container">
+
+    <div class="section">
+      <h3>Our Mission</h3>
+      <p>Our mission is to make learning about prehistoric life exciting and visually engaging. We aim to show how dinosaurs evolved over millions of years, adapting to changing environments and dominating the Earth long before humans appeared.</p>
+    </div>
+
+    <div class="section">
+      <h3>How This Project Was Built</h3>
+      <p>DinoEvolution was created using core web technologies — <strong>HTML, CSS, and JavaScript</strong> — with a focus on responsive design and smooth interactivity. Every image, color, and animation is crafted to reflect the mysterious and powerful atmosphere of the Mesozoic era.</p>
+    </div>
+
+    <div class="section">
+      <h3>Why Dinosaurs?</h3>
+      <p>Dinosaurs represent one of the most fascinating parts of Earth’s history. They teach us about evolution, survival, and adaptation. Through this project, we bring together science and storytelling to help viewers understand how these incredible creatures once ruled the planet.</p>
+    </div>
+
+ 
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    © 2025 DinoEvolution Project | Created for Web Programming Course
+  </footer>
+</body>
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <title>Evolution of Dinosaurs</title>
+
+  <style>
+    /* ====== Global Reset and Fonts ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: rgb(10, 10, 10);
+      color: floralwhite;
+      overflow-x: hidden;
+    }
+
+    /* ====== NAVBAR ====== */
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2.8rem; /* slightly uneven to look natural */
+      background: rgba(0, 0, 0, 0.7);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+    }
+
+    nav h1 {
+      font-size: 1.6rem;
+      letter-spacing: 0.8px;
+      color: limegreen;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: white;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: limegreen;
+    }
+
+    /* ====== HERO SECTION ====== */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 95vh; /* slightly shorter for natural imperfection */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .hero img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+    }
+
+    .hero img.active {
+      opacity: 1;
+    }
+
+    .hero-content {
+      position: relative;
+      text-align: center;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 2.3rem 3rem;
+      border-radius: 10px;
+      max-width: 720px;
+      width: 90%;
+    }
+
+    .hero-content h2 {
+      font-size: 2.4rem;
+      color: limegreen;
+      margin-bottom: 1rem;
+    }
+
+    .hero-content p {
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 1.8rem;
+    }
+
+    .explore-btn {
+      background: limegreen;
+      color: black;
+      border: none;
+      padding: 0.85rem 2rem;
+      font-size: 1rem;
+      border-radius: 25px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .explore-btn:hover {
+      background: lightgreen;
+      transform: scale(1.05);
+    }
+
+    /* ====== INFO SECTION ====== */
+    .info {
+      padding: 6rem 2.2rem;
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .info h3 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      color: limegreen;
+    }
+
+    .info p {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: whitesmoke;
+    }
+
+    /* ====== TIMELINE SECTION ====== */
+    .timeline {
+      background: rgb(20, 20, 20);
+      padding: 4.8rem 2rem;
+      text-align: center;
+    }
+
+    .timeline h3 {
+      color: limegreen;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .timeline p {
+      max-width: 800px;
+      margin: 0 auto 3rem;
+      color: gainsboro;
+    }
+
+    .era-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .era {
+      background: rgb(26, 26, 26);
+      padding: 2rem;
+      border-radius: 10px;
+      width: 280px;
+      transition: transform 0.3s;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .era:hover {
+      transform: scale(1.05);
+    }
+
+    .era h4 {
+      color: limegreen;
+      font-size: 1.4rem;
+      margin-bottom: 0.8rem;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      text-align: center;
+      padding: 2.8rem 1rem;
+      color: darkgray;
+      border-top: 1px solid dimgray;
+      background-color: rgb(15, 15, 15);
+    }
+
+    .footer-links {
+      margin: 1rem 0;
+    }
+
+    .footer-links a {
+      color: yellowgreen;
+      text-decoration: none;
+      margin: 0 0.5rem;
+    }
+
+    .footer-links a:hover {
+      color: lightgreen;
+    }
+
+    .social-icons i {
+      font-size: 22px;
+      margin: 0 0.5rem;
+      color: white;
+      opacity: 0.8;
+      transition: opacity 0.3s, color 0.3s;
+    }
+
+    .social-icons i:hover {
+      opacity: 1;
+      color: limegreen;
+    }
+
+    /* ====== RESPONSIVE DESIGN ====== */
+    @media (max-width: 768px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .hero {
+        height: 85vh;
+      }
+
+      .hero-content h2 {
+        font-size: 1.9rem;
+      }
+
+      .info {
+        padding: 4.5rem 1.2rem;
+      }
+
+      .timeline {
+        padding: 4rem 1rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav {
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      .hero-content {
+        padding: 1.3rem;
+      }
+
+      .hero-content h2 {
+        font-size: 1.6rem;
+      }
+
+      footer {
+        padding: 2rem 0.8rem;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <!-- ====== NAVBAR ====== -->
+  <nav>
+    <h1>DinoX</h1>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="dinosaurs.html">Dinosaurs</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="evolution.html">Evolution</a></li>
+    </ul>
+  </nav>
+
+  <!-- ====== HERO SECTION ====== -->
+  <section class="hero">
+    <img src="images/_126048152_gettyimages-1363838708.jpg" class="active" alt="T-Rex">
+    <img src="images/770Cen_1.jpg" alt="Triceratops">
+    <img src="images/Outdoor-statue-of-Stegosaurus-dinosaur.webp" alt="Stegosaurus">
+    <img src="images/Blog_Banners_15_d5b92d32-275d-4531-969b-c3b5c9bc34ba_1600x.webp" alt="Velociraptor">
+
+    <div class="hero-content">
+      <h2>Journey Through the Evolution of Dinosaurs</h2>
+      <p>Explore how the giants of the Mesozoic era evolved over millions of years — from the Triassic period to the mighty Cretaceous rulers.</p>
+      <button class="explore-btn" onclick="goToDinosaurs()">Explore Dinosaurs</button>
+    </div>
+  </section>
+
+  <!-- ====== INFO SECTION ====== -->
+  <section class="info">
+    <h3>About This Project</h3>
+    <p>This website showcases the fascinating evolution of dinosaurs through time. You can explore how different species adapted, changed, and ruled the Earth for over 160 million years. Click the button above to start your journey into the prehistoric world!</p>
+  </section>
+
+  <!-- ====== TIMELINE SECTION ====== -->
+  <section class="timeline">
+    <h3>The Eras of Dinosaur Evolution</h3>
+    <p>Discover how dinosaurs evolved through the three major eras of the Mesozoic period.</p>
+    <div class="era-grid">
+      <div class="era">
+        <h4>Triassic</h4>
+        <p>The dawn of dinosaurs — small and agile species began to appear.</p>
+      </div>
+      <div class="era">
+        <h4>Jurassic</h4>
+        <p>Large herbivores and fierce predators dominated the lush world.</p>
+      </div>
+      <div class="era">
+        <h4>Cretaceous</h4>
+        <p>The age of giants — and the rise of the mighty Tyrannosaurus Rex.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    <p>© 2025 DinoEvolution Project | Created for Web Programming Course</p>
+    <div class="footer-links">
+      <a href="about.html">About</a> |
+      <a href="privacy.html">Privacy Policy</a> |
+      <a href="contact.html">Contact</a>
+    </div>
+
+    <div class="social-icons">
+      <a href="#" title="Facebook"><i class="fab fa-facebook"></i></a>
+      <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+      <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+    </div>
+  </footer>
+
+  <script>
+    // ====== HERO IMAGE SLIDER ======
+    const images = document.querySelectorAll('.hero img');
+    let current = 0;
+
+    function changeImage() {
+      images[current].classList.remove('active');
+      current = (current + 1) % images.length;
+      images[current].classList.add('active');
+    }
+
+    setInterval(changeImage, 5000); // change every 5 seconds
+
+    // ====== BUTTON NAVIGATION ======
+    function goToDinosaurs() {
+      window.location.href = "dinosaurs.html";
+    }
+  </script>
+</body>
+</html>

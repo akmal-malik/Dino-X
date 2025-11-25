@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinosaurs | Evolution of Dinosaurs</title>
+  <style>
+    /* ====== RESET ====== */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #1a2f1a 0%, #0c1a0c 100%);
+      color: #e8f5e8;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* ====== NAVBAR ====== */
+    nav {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 4rem;
+      background: rgba(10, 25, 10, 0.95);
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 1000;
+      -webkit-backdrop-filter: blur(12px);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(76, 175, 80, 0.2);
+    }
+
+    nav h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      background: linear-gradient(45deg, #4CAF50, #8BC34A);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #c8e6c9;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+      background: rgba(76, 175, 80, 0.1);
+    }
+
+    nav a[style*="color:#6ddf5d"] {
+      color: #4CAF50 !important;
+      background: rgba(76, 175, 80, 0.15);
+    }
+
+    /* ====== HEADER ====== */
+    header {
+      margin-top: 100px;
+      text-align: center;
+      padding: 5rem 2rem;
+      background: linear-gradient(135deg, rgba(26, 47, 26, 0.9) 0%, rgba(12, 26, 12, 0.95) 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="0.5" fill="%234CAF50" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    header h2 {
+      font-size: 3.2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      background: linear-gradient(45deg, #66BB6A, #4CAF50);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      letter-spacing: -1px;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      color: #c8e6c9;
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 400;
+    }
+
+    /* ====== DINO GRID ====== */
+    .dino-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2.5rem;
+      padding: 5rem 4rem;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .dino-card {
+      background: linear-gradient(145deg, #1a331a 0%, #152815 100%);
+      border: 1px solid rgba(76, 175, 80, 0.3);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      cursor: pointer;
+      position: relative;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .dino-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #4CAF50, #8BC34A);
+      transform: scaleX(0);
+      transition: transform 0.4s ease;
+    }
+
+    .dino-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(76, 175, 80, 0.6);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .dino-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .dino-card img {
+      width: 100%;
+      height: 220px;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .dino-card:hover img {
+      transform: scale(1.05);
+    }
+
+    .dino-card h3 {
+      text-align: center;
+      padding: 1.5rem;
+      color: #4CAF50;
+      font-size: 1.4rem;
+      font-weight: 600;
+    }
+
+    /* ====== FOOTER ====== */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: #a5d6a7;
+      border-top: 1px solid rgba(76, 175, 80, 0.2);
+      background: rgba(10, 25, 10, 0.8);
+      font-weight: 400;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav>
+    <h1>DinoX</h1>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="#" style="color:#6ddf5d;">Dinosaurs</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="evolution.html">Evolution</a></li>
+    </ul>
+  </nav>
+
+  <!-- ====== HEADER ====== -->
+  <header>
+    <h2>Explore the Giants of Prehistory</h2>
+    <p>Select a dinosaur below to learn about its evolution, time period, and unique traits.</p>
+  </header>
+
+  <!-- ====== DINO GRID ====== -->
+  <section class="dino-grid">
+    <a class="dino-card" href="dinaousaur.html/trex.html">
+      <img src="images/dinosaur-344131_1280.jpg" alt="Tyrannosaurus Rex">
+      <h3>Tyrannosaurus Rex</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/triceratops.html">
+      <img src="images/173832736-triceratops-huge-dinosaur-of-the-jurassic-era-walks-in-forest-in-summer-on-a-sunny-day-a-wild.jpg" alt="Triceratops">
+      <h3>Triceratops</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/velociraptor.html">
+      <img src="images/18d926aae78d6d28f3d756160496fab4.jpg" alt="Velociraptor">
+      <h3>Velociraptor</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/stegosaurus.html">
+      <img src="images/4802592-311672367.webp" alt="Stegosaurus">
+      <h3>Stegosaurus</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/brachiosaurus.html">
+      <img src="images/artwork-brachiosaurus-f006-9716-9257277.jpg.webp" alt="Brachiosaurus">
+      <h3>Brachiosaurus</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/ankylosaurus.html">
+      <img src="images/360_F_529045663_78wOfOEqDurqurkrtdZoGdA1B8WlnMxz.jpg" alt="Ankylosaurus">
+      <h3>Ankylosaurus</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/spinosaurus.html">
+      <img src="images/Blog_Banners_11_e325b223-a705-4062-a83a-66a2548fde70_1600x.webp" alt="Spinosaurus">
+      <h3>Spinosaurus</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/allosaurus.html">
+      <img src="images/Allosaurus-header.jpg" alt="Allosaurus">
+      <h3>Allosaurus</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/parasaurolophus.html">
+      <img src="images/istockphoto-1095591046-612x612.jpg" alt="Parasaurolophus">
+      <h3>Parasaurolophus</h3>
+    </a>
+
+    <a class="dino-card" href="dinaousaur.html/pteranodon.html">
+      <img src="images/6vA8wWskCkUgffN9dbQhvh.jpg" alt="Pteranodon">
+      <h3>Pteranodon</h3>
+    </a>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer>
+    © 2025 DinoEvolution Project | Explore Prehistoric Wonders
+  </footer>
+
+</body>
+</html>
